@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+FSVIEWER_APPDIR := /usr/share/GNUstep/Applications/FSViewer.app
+FSVIEWER_MANDIR := /usr/share/man
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DFSVIEWER_APPDIR=$(FSVIEWER_APPDIR) \
+		-DFSVIEWER_MANDIR=$(FSVIEWER_MANDIR)

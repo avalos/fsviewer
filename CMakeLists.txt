@@ -3,6 +3,17 @@ cmake_minimum_required(VERSION 3.10)
 project(FSViewer VERSION 0.3.0 LANGUAGES C)
 set(EXECUTABLE ${PROJECT_NAME})
 
+set(FSVIEWER_APPDIR "GNUstep/Apps/FSViewer.app" CACHE PATH
+    "Directory for FSViewer's application data")
+set(FSVIEWER_MANDIR "man" CACHE PATH
+    "Directory for FSViewer's manual page")
+
+if(IS_ABSOLUTE "${FSVIEWER_APPDIR}")
+    set(FSVIEWER_ICONDIR "${FSVIEWER_APPDIR}")
+else()
+    set(FSVIEWER_ICONDIR "${CMAKE_INSTALL_PREFIX}/${FSVIEWER_APPDIR}")
+endif()
+
 find_package(PkgConfig REQUIRED)
 
 file(GLOB REGEXP "src/regexp/*.c")
@@ -40,13 +51,13 @@ add_compile_options(-Wall -Wextra -pedantic -Werror)
 add_definitions(-DCLK=1)
 add_definitions(-DPACKAGE_NAME="${PROJECT_NAME}")
 add_definitions(-DVERSION="${PROJECT_VERSION}")
-add_definitions(-DICONDIR="${CMAKE_INSTALL_PREFIX}/GNUstep/Apps/FSViewer.app")
+add_definitions(-DICONDIR="${FSVIEWER_ICONDIR}")
 add_definitions(-DLOCALEDIR="${CMAKE_INSTALL_PREFIX}/share/locale")
 
 install(TARGETS ${EXECUTABLE} DESTINATION bin)
-install(DIRECTORY xpm DESTINATION GNUstep/Apps/FSViewer.app)
-install(DIRECTORY png DESTINATION GNUstep/Apps/FSViewer.app)
-install(DIRECTORY man/man1 DESTINATION man)
+install(DIRECTORY xpm DESTINATION "${FSVIEWER_APPDIR}")
+install(DIRECTORY png DESTINATION "${FSVIEWER_APPDIR}")
+install(DIRECTORY man/man1 DESTINATION "${FSVIEWER_MANDIR}")
 
 find_program(CLANG_FORMAT NAMES
     clang-format

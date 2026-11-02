@@ -1,0 +1,25 @@
+Source: fsviewer
+Section: x11
+Priority: optional
+Maintainer: Augusto <avaloscesar@gmail.com>
+Build-Depends: debhelper-compat (= 13),
+               cmake,
+               pkg-config,
+               libwings-dev,
+               libwmaker-dev,
+               libwraster-dev,
+               libxpm-dev,
+               libxmu-dev,
+               libpango1.0-dev
+Standards-Version: 4.7.3
+Homepage: https://github.com/roblillack/fsviewer
+Rules-Requires-Root: no
+
+Package: fsviewer
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: NeXT FileViewer lookalike for Window Maker
+ FSViewer is a file manager for Window Maker that resembles NeXT's
+ FileViewer. It shows a directory's contents in browser and list modes
+ using the WINGs toolkit.

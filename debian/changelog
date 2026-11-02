@@ -1,0 +1,7 @@
+fsviewer (0.3.0+avalos1-1) UNRELEASED; urgency=medium
+
+  * Package the owner's fork, avalos/fsviewer, from release 0.3.0.
+  * Install the application data under /usr/share/GNUstep/Applications
+    and the manual page under /usr/share/man.
+
+ -- Augusto <avaloscesar@gmail.com>  Mon, 02 Nov 2026 02:41:27 -0300
